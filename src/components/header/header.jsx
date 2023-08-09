@@ -51,7 +51,7 @@ function Header() {
     }
 
     return (
-        <HeaderDiv>
+        <HeaderDiv className="user-select-none">
             <HeaderSuits suit={"clubs"} amount={clubsAmount} jackpot={jackpotInfo.clubs}></HeaderSuits>
             <HeaderSuits suit={"diamonds"} amount={diamondsAmount} jackpot={jackpotInfo.diamonds}></HeaderSuits>
             <h3 style={{whiteSpace: "nowrap", color: "lightgreen", textShadow: "3px 0px 50px darkgreen"}}>

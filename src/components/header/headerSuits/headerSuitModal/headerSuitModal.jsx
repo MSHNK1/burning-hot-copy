@@ -5,7 +5,7 @@ import { modifyNumber } from "../../../../utility/numberUtils";
 
 let Hover = styled.div`
     position: absolute;
-    top: 65px;
+    top: 35px;
     background-color: black;
     border-radius: 4px;
     border: 1px solid white;
@@ -16,7 +16,7 @@ let Hover = styled.div`
 `;
 let ModalArrow = styled.div`
     position: absolute;
-    top: 58px;
+    top: 28px;
     left: calc(50% - 7px);
     width: 14px;
     height: 14px;

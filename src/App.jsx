@@ -2,6 +2,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css';
+import Footer from './components/footer/footer';
 import Header from './components/header/header';
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
   return (
     <>
       <Header></Header>
+      
+      <Footer></Footer>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />

@@ -7,10 +7,10 @@ import './headerSuits.css';
 
 import HeaderSuitModal from "./headerSuitModal/headerSuitModal";
 
-import clubs from "../../../assets/Card-clubs.svg";
-import diamonds from "../../../assets/Card-diamonds.svg";
-import hearts from "../../../assets/Card-hearts.svg";
-import spades from "../../../assets/Card-spades.svg";
+import clubs from "../../../assets/images/Card-clubs.svg";
+import diamonds from "../../../assets/images/Card-diamonds.svg";
+import hearts from "../../../assets/images/Card-hearts.svg";
+import spades from "../../../assets/images/Card-spades.svg";
 
 
 let SuitContainer = styled.div`

@@ -1,0 +1,37 @@
+.red-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    /* background: green; */
+    overflow: hidden;
+}
+
+.hide {
+    visibility: hidden;
+}
+.line-1 {
+    width: 2px;
+    height: 130%;
+    background-color: red;
+    transform: rotate(30deg);
+    margin-top: calc(50% - 20px);
+    margin-left: calc(50% - 0px);
+}
+
+.line-2 {
+    width: 2px;
+    height: 130%;
+    background-color: red;
+    transform: rotate(-30deg);
+    margin-top: calc(-50% - 21px);
+    margin-left: calc(50% - 0px);
+}
+
+
+h3 {
+    margin: 0;
+    line-height: 14px;
+}

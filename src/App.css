@@ -4,10 +4,20 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 100%, rgba(0, 0, 0, 0.4) 100%), url("./assets/bg.jpg");
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 100%, rgba(0, 0, 0, 0.4) 100%), url("./assets/images/bg.jpg");
   background-position: bottom;
   background-repeat: no-repeat;
   height: 500px;
+  overflow: hidden;
+}
+
+.user-select-none {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 p {
