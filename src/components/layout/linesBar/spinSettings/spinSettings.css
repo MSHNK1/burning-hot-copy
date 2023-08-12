@@ -1,0 +1,22 @@
+text {
+    font-size: 38px;
+    fill: #67c167;
+    font-weight: bold;
+}
+
+path {
+    fill: transparent;
+}
+  
+.scaling {
+    animation-name: scale;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+}
+
+@keyframes scale {
+    0%   {transform: scale(1);}
+    25%  {transform: scale(1.1);}
+    50%  {transform: scale(1.2);}
+    100% {transform: scale(1.3);}
+}

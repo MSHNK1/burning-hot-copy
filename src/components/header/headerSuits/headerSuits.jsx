@@ -73,7 +73,7 @@ function HeaderSuits(props) {
                         jackpot={props.jackpot}
                     ></HeaderSuitModal>
                 }
-                <Image src={selectedSuit} alt={selectedSuit}></Image>
+                <Image draggable="false" src={selectedSuit} alt={selectedSuit}></Image>
                 <Jackpot>
                     <Amount>{modifyNumber(props.amount)}</Amount>
                     <Currency>

@@ -7,6 +7,8 @@ const HeaderDiv = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    z-index: 100;
 `;
 
 function Header() {

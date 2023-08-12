@@ -35,3 +35,13 @@ h3 {
     margin: 0;
     line-height: 14px;
 }
+
+.fs {
+    display: none;
+}
+:fullscreen .ns {
+    display: none;
+}
+:fullscreen .fs {
+    display: unset;
+}

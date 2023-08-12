@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import "./footer.css";
 import { useEffect, useRef, useState } from "react";
 import { modifyNumber } from "../../utility/numberUtils";
-import Button from "./button/button";
+import Button from "./betButton/betButton";
 
 let FooterCont = styled.div`
     display: flex;
@@ -43,19 +43,29 @@ function Footer() {
         }
     }
 
-    // 
-    // 
-    // 
+    const handleFullscreenToggle = (show) => {
+        switch (show) {
+            case "show":
+                document.documentElement.requestFullscreen();
+                break;
+            case "hide":
+                document.exitFullscreen();
+                break;
+        }
+    }
+
     useEffect(() => {
         setBalance(2);
     }, []);
-    // comment. this shoul be deleted or updated.
+
     
     let bets = [0.15, 0.3, 0.75, 1.5, 3];
 
     return (
         <FooterCont className="user-select-none">
-            <Fa style={{position: "unset", padding: "10px 14px", fontSize: "8px", lineHeight: "8px"}}>MORE<br />GAMES</Fa>
+            <Fa style={{position: "unset", padding: "10px 14px", fontSize: "8px", lineHeight: "8px"}}>
+                MORE<br />GAMES
+            </Fa>
 
             <audio ref={audioRef}>
                 <source src="/src/assets/audio/speaker.wav" type="audio/wav" />
@@ -92,10 +102,13 @@ function Footer() {
                 )}
             </Amount>
 
-            <Fa>
-                <i className="fas fa-expand-arrows-alt"></i>
-            {/* <i className="fas fa-compress-arrows-alt"></i> */}
+            <Fa className="fs" onClick={() => handleFullscreenToggle("hide")}>
+                <i className="fas fa-compress-arrows-alt"></i>
             </Fa>
+            <Fa className="ns" onClick={() => handleFullscreenToggle("show")}>
+                <i className="fas fa-expand-arrows-alt"></i>
+            </Fa>
+            
             <Fa>
                 <i className="fas fa-bars"></i>
             </Fa>
