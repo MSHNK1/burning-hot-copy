@@ -36,6 +36,8 @@ function SpinSettings() {
         setScalingTimeout(
             setTimeout(() => {
                 setIsScaling(false);
+                audioRef1.current.pause(); 
+                audioRef1.current.currentTime = 0; 
                 audioRef2.current.play(); 
             }, 1000)
         );
@@ -72,6 +74,7 @@ function SpinSettings() {
                         </textPath>
                     </text>
                 </svg>
+
                 <img 
                     src={arrow1} 
                     alt='curly arrow' 
@@ -83,6 +86,7 @@ function SpinSettings() {
                         width: "67%"
                     }}
                 />
+                
                 <img 
                     src={arrow2} 
                     alt='curly arrow' 
