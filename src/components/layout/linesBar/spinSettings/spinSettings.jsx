@@ -3,6 +3,7 @@ import arrow1 from "../../../../assets/images/arrow-1.svg";
 import arrow2 from "../../../../assets/images/arrow-2.svg";
 import { styled } from 'styled-components';
 import { useRef, useState } from 'react';
+import CurlyButton from './curlyButton/curlyButton';
 
 const TurboSpin = styled.div`
     display: flex;
@@ -10,11 +11,12 @@ const TurboSpin = styled.div`
     justify-content: space-between;
     position: absolute;
     top: 120px;
-    left: -40px;
+    left: -44px;
     height: 110px;
     cursor: pointer;
     border-radius: 50%;
     overflow: hidden;
+    z-index: 100;
 `;
 
 function SpinSettings() {
@@ -62,7 +64,7 @@ function SpinSettings() {
                 <source src="/src/assets/audio/balloon-blows-up.wav" type="audio/wav" />
                 <p>Your browser does not support the audio element.</p>
             </audio>
-          
+
             <TurboSpin onPointerLeave={stopScaling} onPointerUp={stopScaling} onPointerDown={startScaling} className={`${isScaling && "scaling"}`}>
                 <svg viewBox="0 0 500 500" style={{height: "100%"}}>
                     <circle cx="50%" cy="50%" r="247" fill="none" stroke="white" strokeWidth="4" />
@@ -99,6 +101,8 @@ function SpinSettings() {
                     }}
                 />
             </TurboSpin>
+            <CurlyButton top={true}></CurlyButton>
+            <CurlyButton></CurlyButton>
         </>
     )
 }

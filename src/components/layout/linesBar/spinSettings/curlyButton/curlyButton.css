@@ -1,0 +1,19 @@
+.topSettings {
+    top: 66px;
+    left: -70%;
+}
+
+.topSettings path {
+    fill: rgba(91, 183, 97, 0.8);
+}
+
+
+.bottomSettings {
+    transform: rotate(180deg);
+    bottom: 60px;
+    left: -70%;
+}
+
+.bottomSettings path {
+    fill: rgb(28, 107, 165, 0.8);
+}

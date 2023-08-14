@@ -69,13 +69,12 @@ function LinesBar(props) {
         <GreenSquare>3</GreenSquare>
         <GreenSquare>2</GreenSquare>
         <GreenSquare>1</GreenSquare>
-
     </Bar>
   ) 
 }
 
 LinesBar.propTypes = {
-    right: PropTypes.bool,
+    right: PropTypes.string,
 };
 
 export default LinesBar;
