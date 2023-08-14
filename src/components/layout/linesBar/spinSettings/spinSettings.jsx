@@ -16,7 +16,7 @@ const TurboSpin = styled.div`
     cursor: pointer;
     border-radius: 50%;
     overflow: hidden;
-    z-index: 100;
+    z-index: 50;
 `;
 
 function SpinSettings() {
