@@ -1,23 +1,19 @@
 import { styled } from "styled-components";
-// import reels from '../../../../../src/assets/images/reelImages.jpg';
-import Berry from "../../../symbols/berry";
-import Lemon from "../../../symbols/lemon";
-
+import Symbol from "../../../symbols/symbol";
 
 const ReelContainer = styled.div`
     display: flex;
     flex-direction: column;
+    border: 4px solid gold;
+    border-radius: 4px;
 `;
 
 function Reel() {
     return (
         <ReelContainer>
-            <Berry></Berry>
-            <Lemon></Lemon>
-            {/* <img src={reels} style={{width: "80px"}} /> */}
-            {/* <img src={reels} style={{width: "80px"}} /> */}
-            {/* <img src={reels} style={{width: "80px"}} /> */}
-            {/* <img src={reels} style={{width: "80px"}} /> */}
+            <Symbol name={"berry"} />
+            <Symbol name={"lemon"} />
+            <Symbol name={"orange"} />
         </ReelContainer>
     )
 }

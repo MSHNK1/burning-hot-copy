@@ -10,9 +10,9 @@ const LayoutCont = styled.div`
 function Layout() {
   return (
     <LayoutCont className="user-select-none">
-        <LinesBar></LinesBar>
-        <Reels></Reels>
-        <LinesBar right={"true"}></LinesBar>
+        <LinesBar />
+        <Reels />
+        <LinesBar right={"true"} />
     </LayoutCont>
   )
 }

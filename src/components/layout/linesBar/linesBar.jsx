@@ -7,7 +7,7 @@ const Bar = styled.div`
     flex-direction: column;
     outline: 3px solid #a3964e;
     border: 10px solid darkblue;
-    margin: 32px 0;
+    margin: auto;
     border-radius: 14px;
     width: min-content;
     background: darkblue;
