@@ -85,7 +85,7 @@ function Footer() {
                 <p style={{fontSize: "10px"}}>EUR</p>
             </Amount>
 
-            <Button isMuted={isMuted} balance={balance} bets={bets}></Button>
+            <Button isMuted={isMuted} balance={balance} bets={bets} />
 
             <Amount>
                 <p style={{fontSize: "12px", marginBottom: "6px"}}>LAST WIN:</p>

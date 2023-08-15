@@ -63,7 +63,7 @@ function LinesBar(props) {
         <ShadowedText style={{top: "36px", left: "-12px", fontSize: "20px"}}>LINES</ShadowedText>
         <ShadowedText style={{top: "54px", left: "-1px"}}>Fixed</ShadowedText>
         
-        {props.right && <SpinSettings></SpinSettings>}
+        {props.right && <SpinSettings />}
 
         <GreenSquare>4</GreenSquare>
         <GreenSquare>3</GreenSquare>

@@ -54,13 +54,13 @@ function Header() {
 
     return (
         <HeaderDiv className="user-select-none">
-            <HeaderSuits suit={"clubs"} amount={clubsAmount} jackpot={jackpotInfo.clubs}></HeaderSuits>
-            <HeaderSuits suit={"diamonds"} amount={diamondsAmount} jackpot={jackpotInfo.diamonds}></HeaderSuits>
+            <HeaderSuits suit={"clubs"} amount={clubsAmount} jackpot={jackpotInfo.clubs} />
+            <HeaderSuits suit={"diamonds"} amount={diamondsAmount} jackpot={jackpotInfo.diamonds} />
             <h3 style={{whiteSpace: "nowrap", color: "lightgreen", textShadow: "3px 0px 50px darkgreen"}}>
                 BURNING HOT
             </h3>
-            <HeaderSuits suit={"hearts"} amount={heartsAmount} jackpot={jackpotInfo.hearts}></HeaderSuits>
-            <HeaderSuits suit={"spades"} amount={spadesAmount} jackpot={jackpotInfo.spades}></HeaderSuits>
+            <HeaderSuits suit={"hearts"} amount={heartsAmount} jackpot={jackpotInfo.hearts} />
+            <HeaderSuits suit={"spades"} amount={spadesAmount} jackpot={jackpotInfo.spades} />
         </HeaderDiv>
     )
 }

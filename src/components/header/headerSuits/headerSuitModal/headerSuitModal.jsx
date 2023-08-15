@@ -54,12 +54,12 @@ function HeaderSuitModal(props) {
                 <h5 style={{marginBottom: "4px"}}>
                     {modifyNumber(props.jackpot.largestWinnerAmount)} <span style={{color: "yellow", fontSize: "10px"}}>EUR</span>
                 </h5>
-                <Line></Line>
+                <Line />
                 <Row>
                     <p>Number<br/>of winners:</p>
                     <p  style={{color: "yellow", textAlign: "right"}}>{props.jackpot.NofWinners}</p>
                 </Row>
-                <Line></Line>
+                <Line />
                 <Row>
                     <p>Last winner:</p>
                     <p style={{textAlign: "right"}}>{props.jackpot.lastWinnerDate.toLocaleDateString()}</p>
@@ -67,7 +67,8 @@ function HeaderSuitModal(props) {
                 <p style={{marginTop: "12px", color: "yellow", fontSize: "10px"}}>{props.jackpot.code}</p>
                 <h5 style={{margin: 0}}>{modifyNumber(props.jackpot.lastWinnerAmount)} <span style={{color: "yellow", fontSize: "10px"}}>EUR</span></h5>
             </Hover>
-            <ModalArrow></ModalArrow>
+            
+            <ModalArrow />
         </div>
     );
 }

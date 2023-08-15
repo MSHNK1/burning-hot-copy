@@ -6,9 +6,9 @@ import Layout from './components/layout/layout';
 function App() {
   return (
     <>
-      <Header></Header>
-      <Layout></Layout>
-      <Footer></Footer>
+      <Header />
+      <Layout />
+      <Footer />
     </>
   )
 }

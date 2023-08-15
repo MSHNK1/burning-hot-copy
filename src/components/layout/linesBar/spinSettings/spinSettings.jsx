@@ -101,8 +101,8 @@ function SpinSettings() {
                     }}
                 />
             </TurboSpin>
-            <CurlyButton top={true}></CurlyButton>
-            <CurlyButton></CurlyButton>
+            <CurlyButton top={true} />
+            <CurlyButton />
         </>
     )
 }

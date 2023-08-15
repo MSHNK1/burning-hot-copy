@@ -67,13 +67,8 @@ function HeaderSuits(props) {
     return (
         <>
             <SuitContainer onPointerEnter={showModal} onPointerLeave={hideModal}>
-                {isShowModal && 
-                    <HeaderSuitModal 
-                        isShown={isShowModal} 
-                        jackpot={props.jackpot}
-                    ></HeaderSuitModal>
-                }
-                <Image draggable="false" src={selectedSuit} alt={selectedSuit}></Image>
+                {isShowModal && <HeaderSuitModal isShown={isShowModal} jackpot={props.jackpot} />}
+                <Image draggable="false" src={selectedSuit} alt={selectedSuit} />
                 <Jackpot>
                     <Amount>{modifyNumber(props.amount)}</Amount>
                     <Currency>
