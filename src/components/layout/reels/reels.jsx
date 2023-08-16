@@ -12,13 +12,15 @@ const ReelsContainer = styled.div`
 
 function Reels() {
     return (
-        <ReelsContainer>
-            <Reel />
-            <Reel />
-            <Reel />
-            <Reel />
-            <Reel />
-        </ReelsContainer>
+        <>
+            <ReelsContainer>
+                <Reel />
+                <Reel />
+                <Reel />
+                <Reel />
+                <Reel />
+            </ReelsContainer>
+        </>
   )
 }
 
