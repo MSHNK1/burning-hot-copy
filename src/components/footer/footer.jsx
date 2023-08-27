@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
 import "./footer.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { modifyNumber } from "../../utility/numberUtils";
 import Button from "./betButton/betButton";
+import { AudioContext } from "../../utility/AudioContext";
 
 let FooterCont = styled.div`
     display: flex;
@@ -28,13 +29,14 @@ let Amount = styled.div`
 `;
 
 function Footer() {
-    const [isMuted, setMute] = useState(false);
+    const { isMuted, toggleMute } = useContext(AudioContext);
     const [balance, setBalance] = useState(2);
+    const [lastWin, setLastWin] = useState(0);
     const audioRef = useRef(null);
 
     const toggleSpeaker = () => {
-        setMute((prevState) => !prevState);
-        
+        toggleMute();
+
         if (!isMuted) {
             audioRef.current.pause(); 
             audioRef.current.currentTime = 0; 
@@ -54,9 +56,19 @@ function Footer() {
         }
     }
 
-    useEffect(() => {
-        setBalance(2);
-    }, []);
+    const handleRoll = (i) => {
+        if (bets[i] > balance + lastWin) return;
+
+        if (i == 2) {
+            setLastWin(1.5);
+        } else {
+            setLastWin(0);
+        }
+        const newBalance = balance - bets[i] + lastWin;
+
+        // Update the state with the new balance
+        setBalance(newBalance);
+    }
 
     
     let bets = [0.15, 0.3, 0.75, 1.5, 3];
@@ -85,13 +97,13 @@ function Footer() {
                 <p style={{fontSize: "10px"}}>EUR</p>
             </Amount>
 
-            <Button isMuted={isMuted} balance={balance} bets={bets} />
+            <Button isMuted={isMuted} balanceAndLastWin={balance + lastWin} bets={bets} onRoll={handleRoll} />
 
             <Amount>
                 <p style={{fontSize: "12px", marginBottom: "6px"}}>LAST WIN:</p>
-                {modifyNumber(0) > 0 ? (
+                {modifyNumber(lastWin) > 0 ? (
                     <>
-                        <p style={{fontSize: "28px", lineHeight: "36px", height: "36px"}}>{modifyNumber(0)}</p>
+                        <p style={{fontSize: "28px", lineHeight: "36px", height: "36px"}}>{modifyNumber(lastWin)}</p>
                         <p style={{fontSize: "10px", height: "15px"}}>EUR</p>
                     </>
                 ) : (

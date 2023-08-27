@@ -20,7 +20,8 @@ const ReelContainer = styled.div`
     overflow: hidden;
     
     &.rolling > * {
-        animation: ${rollAnimation} .8s cubic-bezier(.17,.77,.06,.9);
+        animation: ${rollAnimation} 4s linear;
+        /* animation: ${rollAnimation} .8s cubic-bezier(.17,.77,.06,.9); */
     }
 `;
 

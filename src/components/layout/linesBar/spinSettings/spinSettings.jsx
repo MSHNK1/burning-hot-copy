@@ -2,8 +2,9 @@ import './spinSettings.css';
 import arrow1 from "../../../../assets/images/arrow-1.svg";
 import arrow2 from "../../../../assets/images/arrow-2.svg";
 import { styled } from 'styled-components';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import CurlyButton from './curlyButton/curlyButton';
+import { AudioContext } from '../../../../utility/AudioContext';
 
 const TurboSpin = styled.div`
     display: flex;
@@ -20,6 +21,7 @@ const TurboSpin = styled.div`
 `;
 
 function SpinSettings() {
+    const { isMuted } = useContext(AudioContext);
     const [isScaling, setIsScaling] = useState(false);
     const [scalingTimeout, setScalingTimeout] = useState(null);
     const audioRef1 = useRef(null);
@@ -28,7 +30,9 @@ function SpinSettings() {
     const startScaling = () => {
         if (!isScaling) {
             setIsScaling(true);
-            audioRef1.current.play();
+            if (!isMuted) {
+                audioRef1.current.play();
+            }
         }
         
         if (scalingTimeout) {
@@ -38,16 +42,21 @@ function SpinSettings() {
         setScalingTimeout(
             setTimeout(() => {
                 setIsScaling(false);
-                audioRef1.current.pause(); 
-                audioRef1.current.currentTime = 0; 
-                audioRef2.current.play(); 
+                if (!isMuted) {
+                    audioRef1.current.pause(); 
+                    audioRef1.current.currentTime = 0; 
+                    audioRef2.current.play(); 
+                }
             }, 1000)
         );
     };
     
     const stopScaling = () => {
-        audioRef1.current.pause(); 
-        audioRef1.current.currentTime = 0; 
+        if (!isMuted) {
+            audioRef1.current.pause(); 
+            audioRef1.current.currentTime = 0; 
+        }
+
         if (scalingTimeout) {
             clearTimeout(scalingTimeout);
         }

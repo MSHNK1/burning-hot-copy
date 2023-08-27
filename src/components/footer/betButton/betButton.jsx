@@ -34,10 +34,10 @@ function Button(props) {
     const [activeBet, setActiveBet] = useState(0);
     const audioRef = useRef(null);
     
-    const activeBetHandler = index => {
-        setActiveBet(index);
-     
-        if (index !== activeBet && !props.isMuted) {
+    const handleRoll = i => {
+        setActiveBet(i);
+        props.onRoll(i);
+        if (!props.isMuted) {
             audioRef.current.play(); 
         }
     }
@@ -45,7 +45,7 @@ function Button(props) {
     return (
         <div>
             <p style={{fontSize: "12px", marginBottom: "11px"}}>
-                {props.balance >= props.bets[activeBet] 
+                {props.balanceAndLastWin >= props.bets[activeBet] 
                 ? "PLEASE PLACE YOUR BETS"
                 : "INSUFFICIENT BALANCE "}
             </p>
@@ -60,7 +60,7 @@ function Button(props) {
                     <BetButton 
                         key={index} 
                         className={`${index === activeBet ? "active" : ""}`} 
-                        onClick={() => activeBetHandler(index)}
+                        onClick={() => handleRoll(index)}
                     >
                         <p>EUR</p>
                         <h3>{modifyNumber(bet)}</h3>
@@ -74,8 +74,9 @@ function Button(props) {
 
 Button.propTypes = {
     bets: PropTypes.array,
-    balance: PropTypes.number,
+    balanceAndLastWin: PropTypes.number,
     isMuted: PropTypes.bool,
+    onRoll: PropTypes.func,
 };
 
 export default Button;
