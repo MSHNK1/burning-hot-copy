@@ -35,8 +35,10 @@ function Button(props) {
     const audioRef = useRef(null);
     
     const handleRoll = i => {
-        setActiveBet(i);
-        props.onRoll(i);
+        setActiveBet(i);  //set active on button
+        props.onRoll(i);  //balance to change
+        // props.onHandleRolling(); //dispatch an action of rolling
+        
         if (!props.isMuted) {
             audioRef.current.play(); 
         }

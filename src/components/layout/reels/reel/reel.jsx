@@ -1,6 +1,9 @@
 import { keyframes, styled } from "styled-components";
 import Symbol from "../../../symbols/symbol";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import * as actions from '../../../../store/actions/index';
 
 const rollAnimation = keyframes`
   0% {
@@ -16,33 +19,23 @@ const ReelContainer = styled.div`
     flex-direction: column-reverse;
     border: 4px solid gold;
     border-radius: 4px;
-    max-height: 456px;
+    /* max-height: 456px; */
     overflow: hidden;
     
     &.rolling > * {
-        animation: ${rollAnimation} 4s linear;
+        animation: ${rollAnimation} 1s linear;
         /* animation: ${rollAnimation} .8s cubic-bezier(.17,.77,.06,.9); */
     }
 `;
 
 
-function Reel() {
+// export const Reel = (props) => {
+function Reel(props) {
     const symbols = ["berry", "lemon", "orange", "seven", "star", "blueBerry", "blueBerry", "blueBerry", "grapes", "lemon", "grapes", "seven", "orange", "star", "grapes", "lucky", "lemon", "lemon", "orange", "orange", "seven", "grapes"];
 
-    const [isRolling, setIsRolling] = useState(false);
     const [symbol1, setSymbol1] = useState(symbols[3]);
     const [symbol2, setSymbol2] = useState(symbols[3]);
     const [symbol3, setSymbol3] = useState(symbols[3]);
-
-    const handleClick = () => {
-        setIsRolling(true);
-        setTimeout(() => {
-            setIsRolling(false);
-        }, 1000); // Duration of animation
-
-        generateSymbol();
-    };
-    
 
     let symbLength = symbols.length;
 
@@ -52,9 +45,6 @@ function Reel() {
 
     const generateSymbol = () => {
         let randNumber = randomNumber(0);
-        // console.log(randNumber);
-        // let symbol = symbols[randNumber];
-        // console.log(symbol);
         let topSymb = randNumber;
         let midSymb;
         let botSymb;
@@ -77,11 +67,19 @@ function Reel() {
         setSymbol1(symbols[topSymb]);
         setSymbol2(symbols[midSymb]);
         setSymbol3(symbols[botSymb]);
-        console.log(topSymb, midSymb, botSymb);
-    }
-    
+        // console.log(topSymb, midSymb, botSymb);
+    }    
+        
+    useEffect(() => {
+        if (props.isRolling) {
+            generateSymbol();
+            console.log(props.isRolling);
+            props.onDoneRolling();
+        }
+    }, [props.isRolling]);
+
     return (
-        <ReelContainer className={isRolling ? "rolling" : ""} onClick={handleClick}>
+        <ReelContainer className={props.isRolling ? "rolling" : ""}>
             <Symbol name={symbol1} />
             <Symbol name={symbol2} />
             <Symbol name={symbol3} />
@@ -89,4 +87,20 @@ function Reel() {
     )
 }
 
-export default Reel;
+Reel.propTypes = {
+    isRolling: PropTypes.bool,
+    onDoneRolling: PropTypes.func,
+};
+
+const mapStateToProps = state => {
+    return {
+        isRolling: state.rolling.initialRolling
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onDoneRolling: () => dispatch(actions.doneRolling()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reel);

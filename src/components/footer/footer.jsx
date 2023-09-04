@@ -4,8 +4,11 @@ import { useContext, useRef, useState } from "react";
 import { modifyNumber } from "../../utility/numberUtils";
 import Button from "./betButton/betButton";
 import { AudioContext } from "../../utility/AudioContext";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import * as actions from '../../store/actions/index';
 
-let FooterCont = styled.div`
+const FooterCont = styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -13,7 +16,7 @@ let FooterCont = styled.div`
         align-self: end;
     }
 `;
-let Fa = styled.div`
+const Fa = styled.div`
     background: black;
     border: 1px solid gray;
     border-radius: 4px;
@@ -22,13 +25,14 @@ let Fa = styled.div`
     cursor: pointer;
     position: relative;
 `;
-let Amount = styled.div`
+const Amount = styled.div`
     width: 250px;
     display: flex;
     flex-direction: column;
 `;
 
-function Footer() {
+// export const Footer = (props) => {
+function Footer(props) {
     const { isMuted, toggleMute } = useContext(AudioContext);
     const [balance, setBalance] = useState(2);
     const [lastWin, setLastWin] = useState(0);
@@ -68,6 +72,9 @@ function Footer() {
 
         // Update the state with the new balance
         setBalance(newBalance);
+
+        props.onInitiateRolling();
+        console.log("gashveba");
     }
 
     
@@ -128,4 +135,16 @@ function Footer() {
     )
 }
 
-export default Footer;
+Footer.propTypes = {
+    isRolling: PropTypes.bool,
+    onInitiateRolling: PropTypes.func,
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitiateRolling: () => dispatch(actions.initiateRolling()),
+        onDoneRolling: () => dispatch(actions.doneRolling()),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Footer);
