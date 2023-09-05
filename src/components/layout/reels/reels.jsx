@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Reel from "./reel/reel";
+import { reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, reelSymbolsList5 } from "../../../utility/reelSymbolsList";
 
 const ReelsContainer = styled.div`
     width: calc(100% - 2 * 50px);
@@ -11,16 +12,21 @@ const ReelsContainer = styled.div`
 `;
 
 function Reels() {
+    const reelsData = [
+        reelSymbolsList1,
+        reelSymbolsList2,
+        reelSymbolsList3,
+        reelSymbolsList4,
+        reelSymbolsList5,
+    ];
+
     return (
         <ReelsContainer>
-            <Reel />
-            <Reel />
-            <Reel />
-            <Reel />
-            <Reel />
+            {reelsData.map((reelSymbolsList, index) => (
+                <Reel listNumber={index} key={index} symbols={reelSymbolsList} />
+            ))}
         </ReelsContainer>
   )
 }
-
 
 export default Reels;

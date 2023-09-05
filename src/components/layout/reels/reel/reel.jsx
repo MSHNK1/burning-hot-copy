@@ -16,7 +16,7 @@ const rollAnimation = keyframes`
 
 const ReelContainer = styled.div`
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     border: 4px solid gold;
     border-radius: 4px;
     /* max-height: 456px; */
@@ -31,13 +31,12 @@ const ReelContainer = styled.div`
 
 // export const Reel = (props) => {
 function Reel(props) {
-    const symbols = ["berry", "lemon", "orange", "seven", "star", "blueBerry", "blueBerry", "blueBerry", "grapes", "lemon", "grapes", "seven", "orange", "star", "grapes", "lucky", "lemon", "lemon", "orange", "orange", "seven", "grapes"];
+    const symbolsList = props.symbols;
+    const [symbol1, setSymbol1] = useState("seven");
+    const [symbol2, setSymbol2] = useState("seven");
+    const [symbol3, setSymbol3] = useState("seven");
 
-    const [symbol1, setSymbol1] = useState(symbols[3]);
-    const [symbol2, setSymbol2] = useState(symbols[3]);
-    const [symbol3, setSymbol3] = useState(symbols[3]);
-
-    let symbLength = symbols.length;
+    let symbLength = symbolsList.length;
 
     function randomNumber(min) {
         return Math.floor(Math.random() * (symbLength - min) + min);
@@ -64,12 +63,13 @@ function Reel(props) {
                 break;
         }
 
-        setSymbol1(symbols[topSymb]);
-        setSymbol2(symbols[midSymb]);
-        setSymbol3(symbols[botSymb]);
-        // console.log(topSymb, midSymb, botSymb);
-    }    
+        setSymbol1(symbolsList[topSymb]);
+        setSymbol2(symbolsList[midSymb]);
+        setSymbol3(symbolsList[botSymb]);
         
+        console.log("Number of List:", (props.listNumber + 1),"   Symbols in the reel:", topSymb, midSymb, botSymb);
+    }
+
     useEffect(() => {
         if (props.isRolling) {
             generateSymbol();
@@ -88,6 +88,8 @@ function Reel(props) {
 }
 
 Reel.propTypes = {
+    symbols: PropTypes.array,
+    listNumber: PropTypes.number,
     isRolling: PropTypes.bool,
     onDoneRolling: PropTypes.func,
 };
