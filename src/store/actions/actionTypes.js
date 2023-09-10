@@ -1,3 +1,5 @@
 export const INITIATE_ROLLING = "INITIATE_ROLLING";
 export const FAST_ROLLING = "FAST_ROLLING";
 export const DONE_ROLLING = "DONE_ROLLING";
+
+export const PAY_PRIZE = "PAY_PRIZE";

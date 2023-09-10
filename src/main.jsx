@@ -4,10 +4,12 @@ import App from './App.jsx';
 import './index.css';
 import { combineReducers, createStore } from 'redux';
 import rollingReducer from './store/reducers/rolling.js';
+import payingReducer from './store/reducers/paying.js';
 import { Provider } from 'react-redux';
 
 const rootReducer = combineReducers({
-  rolling: rollingReducer
+  rolling: rollingReducer,
+  payingg: payingReducer,
 })
 
 const store = createStore(rootReducer);

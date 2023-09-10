@@ -34,7 +34,8 @@ const Amount = styled.div`
 // export const Footer = (props) => {
 function Footer(props) {
     const { isMuted, toggleMute } = useContext(AudioContext);
-    const [balance, setBalance] = useState(2);
+    const [balance, setBalance] = useState(20);
+    // const [bet, setBet] = useState(0.15);
     const [lastWin, setLastWin] = useState(0);
     const audioRef = useRef(null);
 
@@ -57,6 +58,9 @@ function Footer(props) {
             case "hide":
                 document.exitFullscreen();
                 break;
+            default:
+                alert("Error in handleFullscreenToggle() function!");
+                break;
         }
     }
 
@@ -65,9 +69,8 @@ function Footer(props) {
 
         if (i == 2) {
             setLastWin(1.5);
-        } else {
-            setLastWin(0);
-        }
+        } 
+
         const newBalance = balance - bets[i] + lastWin;
 
         // Update the state with the new balance
@@ -104,13 +107,15 @@ function Footer(props) {
                 <p style={{fontSize: "10px"}}>EUR</p>
             </Amount>
 
-            <Button isMuted={isMuted} balanceAndLastWin={balance + lastWin} bets={bets} onRoll={handleRoll} />
+            <Button isMuted={isMuted} balanceAndLastWin={balance + props.winPrize} bets={bets} onRoll={handleRoll} />
 
             <Amount>
                 <p style={{fontSize: "12px", marginBottom: "6px"}}>LAST WIN:</p>
-                {modifyNumber(lastWin) > 0 ? (
+                {(props.lastWinPrize + props.winPrize) > 0 ? (
                     <>
-                        <p style={{fontSize: "28px", lineHeight: "36px", height: "36px"}}>{modifyNumber(lastWin)}</p>
+                        <p style={{fontSize: "28px", lineHeight: "36px", height: "36px"}}>
+                            {modifyNumber(props.winPrize > 0 ? props.winPrize : props.lastWinPrize)}
+                        </p>
                         <p style={{fontSize: "10px", height: "15px"}}>EUR</p>
                     </>
                 ) : (
@@ -138,6 +143,15 @@ function Footer(props) {
 Footer.propTypes = {
     isRolling: PropTypes.bool,
     onInitiateRolling: PropTypes.func,
+    winPrize: PropTypes.number,
+    lastWinPrize: PropTypes.number,
+};
+
+const mapStateToProps = state => {
+    return {
+        winPrize: state.payingg.winPrize,
+        lastWinPrize: state.payingg.lastWinPrize,
+    }
 };
 
 const mapDispatchToProps = dispatch => {
@@ -147,4 +161,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);
