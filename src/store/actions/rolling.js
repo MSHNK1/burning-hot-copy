@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const initiateRolling = () => {
+export const initiateRolling = (bet) => {
     return {
         type: actionTypes.INITIATE_ROLLING,
+        bet: bet,
     }
 }
 

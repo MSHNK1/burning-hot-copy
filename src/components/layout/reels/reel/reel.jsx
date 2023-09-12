@@ -18,6 +18,8 @@ const ReelContainer = styled.div`
     border-radius: 4px;
     /* max-height: 456px; */
     overflow: hidden;
+    // If the images are all the same sizes, then below should be uncommented
+    /* height: min-content */
     
     &.rolling > * {
         animation: ${rollAnimation} 1s linear;

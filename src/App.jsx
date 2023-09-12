@@ -6,7 +6,7 @@ import Layout from './components/layout/layout';
 import { AudioContext } from './utility/AudioContext';
 
 function App() {
-  const [isMuted, setMuted] = useState(false);
+  const [isMuted, setMuted] = useState(true);
 
   const toggleMute = () => {
     setMuted((prevState) => !prevState);

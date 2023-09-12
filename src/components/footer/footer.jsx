@@ -7,6 +7,7 @@ import { AudioContext } from "../../utility/AudioContext";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as actions from '../../store/actions/index';
+import { useEffect } from "react";
 
 const FooterCont = styled.div`
     display: flex;
@@ -35,9 +36,11 @@ const Amount = styled.div`
 function Footer(props) {
     const { isMuted, toggleMute } = useContext(AudioContext);
     const [balance, setBalance] = useState(20);
-    // const [bet, setBet] = useState(0.15);
-    const [lastWin, setLastWin] = useState(0);
+    const [roll, setRoll] = useState(false);
     const audioRef = useRef(null);
+    const [counting, setCounting] = useState(false);
+    const [displayedNumber, setDisplayedNumber] = useState(0);
+    const finalNumber = props.winPrize;
 
     const toggleSpeaker = () => {
         toggleMute();
@@ -48,7 +51,7 @@ function Footer(props) {
         } else {
             audioRef.current.play(); 
         }
-    }
+    };
 
     const handleFullscreenToggle = (show) => {
         switch (show) {
@@ -62,26 +65,50 @@ function Footer(props) {
                 alert("Error in handleFullscreenToggle() function!");
                 break;
         }
-    }
+    };
 
     const handleRoll = (i) => {
-        if (bets[i] > balance + lastWin) return;
+        if (bets[i] > balance + props.winPrize) return;
 
-        if (i == 2) {
-            setLastWin(1.5);
-        } 
+        if (counting) {
+            setBalance(balance - bets[i] + props.winPrize);
+        } else {
+            setBalance(balance - bets[i]);
+        }
+        
+        if (!counting) {
+            setCounting(true);
+        }
 
-        const newBalance = balance - bets[i] + lastWin;
-
-        // Update the state with the new balance
-        setBalance(newBalance);
-
-        props.onInitiateRolling();
-        console.log("gashveba");
-    }
-
+        setRoll(true);
+        props.onInitiateRolling(bets[i]);
+        console.log("გაშვება");
+    };
     
-    let bets = [0.15, 0.3, 0.75, 1.5, 3];
+
+    useEffect(() => {
+        if (counting) {
+            const interval = setInterval(() => {
+              let newDisplayedNumber = +displayedNumber + 0.10;
+              newDisplayedNumber = Math.min(newDisplayedNumber, finalNumber);
+              setDisplayedNumber(newDisplayedNumber.toFixed(2));
+              
+              if (newDisplayedNumber >= finalNumber) {
+                setCounting(false);
+              }
+            }, 100);
+      
+            return () => clearInterval(interval);
+        }
+
+        if (roll) {
+            setBalance(prevBalance => prevBalance + props.winPrize);
+            setRoll(false);
+        }
+    }, [counting, displayedNumber, finalNumber, balance, roll, props.bet, props.winPrize])
+    
+    // let bets = [0.15, 0.3, 0.75, 1.5, 3];
+    let bets = [0.1, 0.2, 0.3, 0.4, 0.5];
 
     return (
         <FooterCont className="user-select-none">
@@ -114,7 +141,7 @@ function Footer(props) {
                 {(props.lastWinPrize + props.winPrize) > 0 ? (
                     <>
                         <p style={{fontSize: "28px", lineHeight: "36px", height: "36px"}}>
-                            {modifyNumber(props.winPrize > 0 ? props.winPrize : props.lastWinPrize)}
+                            {props.winPrize > 0 ? displayedNumber : modifyNumber(props.lastWinPrize)}
                         </p>
                         <p style={{fontSize: "10px", height: "15px"}}>EUR</p>
                     </>
@@ -145,18 +172,20 @@ Footer.propTypes = {
     onInitiateRolling: PropTypes.func,
     winPrize: PropTypes.number,
     lastWinPrize: PropTypes.number,
+    bet: PropTypes.number
 };
 
 const mapStateToProps = state => {
     return {
         winPrize: state.payingg.winPrize,
         lastWinPrize: state.payingg.lastWinPrize,
+        bet: state.rolling.bet,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitiateRolling: () => dispatch(actions.initiateRolling()),
+        onInitiateRolling: (bet) => dispatch(actions.initiateRolling(bet)),
         onDoneRolling: () => dispatch(actions.doneRolling()),
     }
 }

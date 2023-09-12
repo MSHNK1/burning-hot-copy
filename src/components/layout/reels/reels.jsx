@@ -99,12 +99,12 @@ function Reels(props) {
         });
 
         if (numberOfDollars >= 3) {
-            console.log(numberOfDollars, "-მაგი მოგება დოლარებით");
+            // console.log(numberOfDollars, "-მაგი მოგება დოლარებით");
             payPrize(dollar, numberOfDollars);
         }
         
         if (numberOfStars == 3) {
-            console.log(numberOfStars, "-მაგი მოგება ვარსკვლავებით");
+            // console.log(numberOfStars, "-მაგი მოგება ვარსკვლავებით");
             payPrize(star, numberOfStars);
         }
     }
@@ -119,12 +119,7 @@ function Reels(props) {
             }
 
             if (numberOfCombinedSymbols >= 2 && payLineNumber[0] === seven) {
-                console.log(numberOfCombinedSymbols, "-მაგი მოგება შვიდიანებით");
-
-                // let bet = 0.15;
-                // const symb = payLineNumber[0];
-                // let winPrize = bet * symbolsWeight[symb][numberOfCombinedSymbols];
-                // console.log(winPrize, "მოგება 7-იანებით");
+                // console.log(numberOfCombinedSymbols, "-მაგი მოგება შვიდიანებით");
                 
                 payPrize(payLineNumber[0], numberOfCombinedSymbols);
             }
@@ -141,23 +136,20 @@ function Reels(props) {
             return accumulator + value;
         }, null);
         
-        // let lastWinPrize = 0;
         if (winPrize > 0) {
             setLastWinPrize(winPrize);
-            // lastWinPrize = winPrize;
         }
 
         props.onPayPrize(winPrize, lastWinPrize);
     }
     
     function payPrize(symbol, number) {
-        let bet = 0.15;
+        let bet = props.bet;
+        console.log("payPrize:", bet, props.bet);
         let oneWinPrize = bet * symbolsWeight[symbol][number];
         console.log(oneWinPrize, "მოგება", symbol, number);
 
         winPrizeArray.push(Number(oneWinPrize.toFixed(2)));
-
-        // props.onPayPrize(winPrize);
     }
 
     function randomNumber(min, symbLength) {
@@ -222,11 +214,13 @@ Reels.propTypes = {
     isRolling: PropTypes.bool,
     onDoneRolling: PropTypes.func,
     onPayPrize: PropTypes.func,
+    bet: PropTypes.number,
 };
 
 const mapStateToProps = state => {
     return {
-        isRolling: state.rolling.initialRolling
+        isRolling: state.rolling.initialRolling,
+        bet: state.rolling.bet,
     }
 };
 const mapDispatchToProps = dispatch => {

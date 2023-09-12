@@ -1,13 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    // initialWin: 10,
     winPrize: 0,
     lastWinPrize: 0,
 };
 
 const reducer = (state = initialState, action) => {
-    console.log("reducer:", action.winPrize, action.lastWinPrize);
+    // console.log("reducer:", action.winPrize, action.lastWinPrize);
     switch (action.type) {
         case actionTypes.PAY_PRIZE:
             return {
