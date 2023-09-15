@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import Reel from "./reel/reel";
-import { dollar, lucky, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, star } from "../../../utility/reelSymbolsList";
+import { dollar, wild, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, star } from "../../../utility/reelSymbolsList";
 import { connect } from "react-redux";
 import * as actions from '../../../store/actions/index';
 import PropTypes from "prop-types";
@@ -44,12 +44,12 @@ function Reels(props) {
     ];
 
     function addToPayline(reelIndex) {
-        if (symbolsListArray[reelIndex].reel.includes("lucky")) {
-            payLine[0].payLine0.push(lucky);
-            payLine[1].payLine1.push(lucky);
-            payLine[2].payLine2.push(lucky);
-            payLine[3].payLine3.push(lucky);
-            payLine[4].payLine4.push(lucky);
+        if (symbolsListArray[reelIndex].reel.includes("wild")) {
+            payLine[0].payLine0.push(wild);
+            payLine[1].payLine1.push(wild);
+            payLine[2].payLine2.push(wild);
+            payLine[3].payLine3.push(wild);
+            payLine[4].payLine4.push(wild);
         } else {
             payLine[0].payLine0.push(symbolsListArray[reelIndex].reel[0]);
             payLine[1].payLine1.push(symbolsListArray[reelIndex].reel[1]);
@@ -109,24 +109,48 @@ function Reels(props) {
         }
     }
 
+    function spreadWild(payLineNumber, numberOfCombinedSymbols) {
+        const wildIndexesInPayline = [];
+        for (let i = 1; i < numberOfCombinedSymbols; i++) {
+            if (payLineNumber[i] === wild) {
+                wildIndexesInPayline.push(i);
+            }
+        }
+        
+        wildIndexesInPayline.forEach(i => {
+            setSymbolsListArray(prevSymbolsListArray => {
+                const updatedArray = [...prevSymbolsListArray];
+                const indexToChange = updatedArray.findIndex(item => item.id === i);
+            
+                updatedArray[indexToChange] = {
+                ...updatedArray[indexToChange],
+                reel: [wild, wild, wild],
+                };
+            
+                return updatedArray;
+            });
+        });
+    }
+
     function payRules() {
         payLine.forEach(payLine => {
             let numberOfCombinedSymbols = 1;
             let payLineNumber = payLine[`payLine${payLine.id}`]
             
-            for (let i = 0; payLineNumber[i + 1] === payLineNumber[i] || payLineNumber[i + 1] === lucky || payLineNumber[i + 1] === payLineNumber[0]; i++) {
+            for (let i = 0; payLineNumber[i + 1] === payLineNumber[i] || payLineNumber[i + 1] === wild || payLineNumber[i + 1] === payLineNumber[0]; i++) {
                 numberOfCombinedSymbols += 1;
             }
 
             if (numberOfCombinedSymbols >= 2 && payLineNumber[0] === seven) {
                 // console.log(numberOfCombinedSymbols, "-მაგი მოგება შვიდიანებით");
-                
                 payPrize(payLineNumber[0], numberOfCombinedSymbols);
+                spreadWild(payLineNumber, numberOfCombinedSymbols);
             }
             
             if (numberOfCombinedSymbols >= 3 && payLineNumber[0] !== seven && payLineNumber[0] !== star && payLineNumber[0] !== dollar) {
                 // console.log(numberOfCombinedSymbols, "-მაგი მოგება", payLineNumber[0], "-ით");
                 payPrize(payLineNumber[0], numberOfCombinedSymbols);
+                spreadWild(payLineNumber, numberOfCombinedSymbols);
             }
 
             console.log(payLineNumber[0], payLineNumber[1], payLineNumber[2], payLineNumber[3], payLineNumber[4], numberOfCombinedSymbols);

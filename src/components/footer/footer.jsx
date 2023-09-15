@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as actions from '../../store/actions/index';
 import { useEffect } from "react";
+import probabilityCalculator from "../../mathematics/probability.js";
 
 const FooterCont = styled.div`
     display: flex;
@@ -79,7 +80,7 @@ function Footer(props) {
         if (!counting) {
             setCounting(true);
         }
-
+        probabilityCalculator();
         setRoll(true);
         props.onInitiateRolling(bets[i]);
         console.log("გაშვება");
