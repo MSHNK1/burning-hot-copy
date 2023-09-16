@@ -37,12 +37,12 @@ export default function probabilityCalculator() {
         }
     }
 
-    console.log("რაოდენობა", symbolCounts);
-    console.log("ალბათობა", symbolProbabilitys);
+    // console.log("რაოდენობა", symbolCounts);
+    // console.log("ალბათობა", symbolProbabilitys);
 
     const pStar = (3 * 3 / 50) * (3 * 2 / 50) * (3 * 3 / 50);
     const RTPstar = pStar * symbolsWeight["star"][3];
-    console.log("RTP of star is: " + RTPstar * 100 + "%");
+    // console.log("RTP of star is: " + RTPstar * 100 + "%");
     
     
     const pDollar5 = (3 * 3 / 50) * (3 * 3 / 50) * (2 * 3 / 50) * (3 * 3 / 50) * (3 * 3 / 50);
@@ -54,10 +54,10 @@ export default function probabilityCalculator() {
     const RTPdollar3 = pDollar3 * symbolsWeight["dollar"][3];
 
     const RTPdollar = RTPdollar5 + RTPdollar4 + RTPdollar3;
-    console.log("RTP of dollar is: " + RTPdollar * 100 + "%");
-    console.log("RTP of dollar3 is: " + RTPdollar3 * 100 + "%");
-    console.log("RTP of dollar4 is: " + RTPdollar4 * 100 + "%");
-    console.log("RTP of dollar5 is: " + RTPdollar5 * 100 + "%");
+    // console.log("RTP of dollar is: " + RTPdollar * 100 + "%");
+    // console.log("RTP of dollar3 is: " + RTPdollar3 * 100 + "%");
+    // console.log("RTP of dollar4 is: " + RTPdollar4 * 100 + "%");
+    // console.log("RTP of dollar5 is: " + RTPdollar5 * 100 + "%");
 
 
     const RTPscatters = RTPstar + RTPdollar;

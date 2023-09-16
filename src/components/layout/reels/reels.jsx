@@ -7,6 +7,8 @@ import * as actions from '../../../store/actions/index';
 import PropTypes from "prop-types";
 import { seven } from '../../../utility/reelSymbolsList';
 import { symbolsWeight } from "../../../utility/symbolsWeight";
+import { generate1to3 } from "../../../utility/generate1to3";
+import { generateWild } from "../../../utility/generateWild";
 
 const ReelsContainer = styled.div`
     width: calc(100% - 2 * 50px);
@@ -26,6 +28,14 @@ function Reels(props) {
         reelSymbolsList4,
     ];
 
+    const payLine = [
+        {id: 0, payLine0: []},  //000 - top
+        {id: 1, payLine1: []},  //111 - middle
+        {id: 2, payLine2: []},  //222 - bottom
+        {id: 3, payLine3: []},  //01210 - top-bottom-top
+        {id: 4, payLine4: []},  //21012 - bottom-top-bottom
+    ];
+
     const [lastWinPrize, setLastWinPrize] = useState(0);
     const [symbolsListArray, setSymbolsListArray] = useState([
         {id: 0, reel: [seven, seven, seven]}, 
@@ -35,21 +45,12 @@ function Reels(props) {
         {id: 4, reel: [seven, seven, seven]}, 
     ])
 
-    const payLine = [
-        {id: 0, payLine0: []},  //000 - top
-        {id: 1, payLine1: []},  //111 - middle
-        {id: 2, payLine2: []},  //222 - bottom
-        {id: 3, payLine3: []},  //01210 - top-bottom-top
-        {id: 4, payLine4: []},  //21012 - bottom-top-bottom
-    ];
 
     function addToPayline(reelIndex) {
         if (symbolsListArray[reelIndex].reel.includes("wild")) {
-            payLine[0].payLine0.push(wild);
-            payLine[1].payLine1.push(wild);
-            payLine[2].payLine2.push(wild);
-            payLine[3].payLine3.push(wild);
-            payLine[4].payLine4.push(wild);
+            for (let i = 0; i < payLine.length; i++) {
+                payLine[i]["payLine" + i].push(wild);
+            }
         } else {
             payLine[0].payLine0.push(symbolsListArray[reelIndex].reel[0]);
             payLine[1].payLine1.push(symbolsListArray[reelIndex].reel[1]);
@@ -75,6 +76,7 @@ function Reels(props) {
                     break;
             }
         }
+
         if (reelIndex === 4) {
             console.log(payLine);
             payRulesScatters();
@@ -180,17 +182,15 @@ function Reels(props) {
         return Math.floor(Math.random() * (symbLength - min) + min);
     }
     
-    const generateSymbol = (reelIndex) => {
-        // console.log(payLine2);
+    const generateSymbol = (reelIndex, wildReel, wildPosition) => {
         const newSymbolsListArray = [...symbolsListArray];
         const reel = newSymbolsListArray[reelIndex];
-        // console.log(reelsData, reelIndex);
         const symbLength = reelsData[reelIndex].length;
         let randNumber = randomNumber(0, symbLength);
         let topSymb = randNumber;
         let midSymb;
         let botSymb;
-
+        
         switch (randNumber) {
             case (symbLength - 2):
                 midSymb = randNumber + 1;
@@ -207,19 +207,78 @@ function Reels(props) {
         }
 
         reel.reel = [reelsData[reelIndex][topSymb], reelsData[reelIndex][midSymb], reelsData[reelIndex][botSymb]];
-        
+
+        //insert wild(s)
+        const hasStar = reel.reel.includes(star);
+        const hasDollar = reel.reel.includes(dollar);
+
+        for (let i = 0; i < wildReel.length; i++) {
+            if (reelIndex === wildReel[i]) {
+                if (!hasStar && !hasDollar) {
+                    reel.reel[wildPosition[i] - 1] = wild;
+                } else if (hasStar) {
+                    let starIndex = reel.reel.indexOf("star");
+                    reel.reel[starIndex] = wild;
+                } else if (hasDollar) {
+                    let dollarIndex = reel.reel.indexOf("dollar");
+                    reel.reel[dollarIndex] = wild;
+                }
+            }
+        }
+
         // console.log(reelIndex, reel.reel[0], reel.reel[1], reel.reel[2]);
         // console.log(symbolsListArray);
 
         newSymbolsListArray[reelIndex] = reel;
         setSymbolsListArray(newSymbolsListArray);
+        
         addToPayline(reelIndex);
     }
 
     useEffect(() => {
         if (props.isRolling) {
+
+            let wildAmount;
+            let wildReel = [];
+            let wildPosition = [];
+            let wildReelItem;
+            let index;
+            
+            wildAmount = generateWild();
+
+            if (wildAmount > 0 && wildAmount <= 3) {
+                switch (wildAmount) {
+                    case 1:
+                        wildReel.push(generate1to3());
+                        wildPosition.push(generate1to3());
+                        console.log("1 wild", wildReel, wildPosition);
+                        break;
+                        
+                    case 2:
+                        wildReel = [1, 2, 3];
+                        wildReelItem = generate1to3();
+                        index = wildReel.indexOf(wildReelItem);
+                        wildReel.splice(index, 1);
+                        
+                        wildPosition.push(generate1to3(), generate1to3());
+                        
+                        console.log("2 wild", wildReel, wildPosition);
+                        break;
+                    case 3:
+                        wildReel = [1, 2, 3];
+                        wildPosition.push(generate1to3());
+                        
+                        console.log("3 wild", wildReel, wildPosition);
+                        break;
+
+                    default:
+                        alert("Error in wild amount switch!");
+                        break;
+                }
+            }
+    
             reelsData.forEach((_, index) => {
-                generateSymbol(index);
+                generateSymbol(index, wildReel, wildPosition);
             });
             props.onDoneRolling();
         }
@@ -231,7 +290,7 @@ function Reels(props) {
                 <Reel key={reelData.id} symbols={reelData.reel} />
             ))}
         </ReelsContainer>
-  )
+    )
 }
 
 Reels.propTypes = {
