@@ -78,9 +78,9 @@ function Reels(props) {
         }
 
         if (reelIndex === 4) {
-            console.log(payLine);
+            // console.log(payLine);
             payRulesScatters();
-            payRules();
+            payRulesNonScatters();
         }
     }
     
@@ -134,7 +134,7 @@ function Reels(props) {
         });
     }
 
-    function payRules() {
+    function payRulesNonScatters() {
         payLine.forEach(payLine => {
             let numberOfCombinedSymbols = 1;
             let payLineNumber = payLine[`payLine${payLine.id}`]
@@ -155,7 +155,7 @@ function Reels(props) {
                 spreadWild(payLineNumber, numberOfCombinedSymbols);
             }
 
-            console.log(payLineNumber[0], payLineNumber[1], payLineNumber[2], payLineNumber[3], payLineNumber[4], numberOfCombinedSymbols);
+            // console.log(payLineNumber[0], payLineNumber[1], payLineNumber[2], payLineNumber[3], payLineNumber[4], numberOfCombinedSymbols);
         });
 
         let winPrize = winPrizeArray.reduce((accumulator, value) => {
@@ -171,9 +171,11 @@ function Reels(props) {
     
     function payPrize(symbol, number) {
         let bet = props.bet;
-        console.log("payPrize:", bet, props.bet);
+        // console.log("payPrize:", bet, props.bet);
         let oneWinPrize = bet * symbolsWeight[symbol][number];
-        console.log(oneWinPrize, "მოგება", symbol, number);
+        // let oneWinTimePrize = symbolsWeight[symbol][number];
+        // console.log("მოგება EUR:", oneWinPrize, symbol, number);
+        console.log(`მოგება არის ${oneWinPrize}-მაგი ${number} ${symbol}-თ`);
 
         winPrizeArray.push(Number(oneWinPrize.toFixed(2)));
     }
@@ -251,7 +253,7 @@ function Reels(props) {
                     case 1:
                         wildReel.push(generate1to3());
                         wildPosition.push(generate1to3());
-                        console.log("1 wild", wildReel, wildPosition);
+                        // console.log("1 wild", wildReel, wildPosition);
                         break;
                         
                     case 2:
@@ -262,13 +264,13 @@ function Reels(props) {
                         
                         wildPosition.push(generate1to3(), generate1to3());
                         
-                        console.log("2 wild", wildReel, wildPosition);
+                        // console.log("2 wild", wildReel, wildPosition);
                         break;
                     case 3:
                         wildReel = [1, 2, 3];
                         wildPosition.push(generate1to3());
                         
-                        console.log("3 wild", wildReel, wildPosition);
+                        // console.log("3 wild", wildReel, wildPosition);
                         break;
 
                     default:

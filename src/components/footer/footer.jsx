@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as actions from '../../store/actions/index';
 import { useEffect } from "react";
-import probabilityCalculator from "../../mathematics/probability.js";
 
 const FooterCont = styled.div`
     display: flex;
@@ -36,12 +35,13 @@ const Amount = styled.div`
 // export const Footer = (props) => {
 function Footer(props) {
     const { isMuted, toggleMute } = useContext(AudioContext);
-    const [balance, setBalance] = useState(20);
+    const [balance, setBalance] = useState(500);
     const [roll, setRoll] = useState(false);
     const audioRef = useRef(null);
     const [counting, setCounting] = useState(false);
     const [displayedNumber, setDisplayedNumber] = useState(0);
     const finalNumber = props.winPrize;
+
 
     const toggleSpeaker = () => {
         toggleMute();
@@ -80,12 +80,10 @@ function Footer(props) {
         if (!counting) {
             setCounting(true);
         }
-        probabilityCalculator();
         setRoll(true);
         props.onInitiateRolling(bets[i]);
-        console.log("გაშვება");
+        // console.log("გაშვება");
     };
-    
 
     useEffect(() => {
         if (counting) {
@@ -109,7 +107,7 @@ function Footer(props) {
     }, [counting, displayedNumber, finalNumber, balance, roll, props.bet, props.winPrize])
     
     // let bets = [0.15, 0.3, 0.75, 1.5, 3];
-    let bets = [0.1, 0.2, 0.3, 0.4, 0.5];
+    let bets = [1, 2, 3, 4, 5];
 
     return (
         <FooterCont className="user-select-none">

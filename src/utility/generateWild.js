@@ -14,14 +14,14 @@ export const generateWild = () => {
         result = 2;
     } else if (randomNumber < oneProbability) {
         result = 1;
-    } else if (randomNumber < zeroProbability) {
+    } else if (randomNumber <= zeroProbability) {
         result = 0;
     } else {
         alert("Error in generateWild()");
         result = "other"; // in case randomNumber is greater than 100
     }
 
-    console.log(randomNumber, result, "wild");
+    // console.log(randomNumber, result, "wild");
 
     return result;
 }

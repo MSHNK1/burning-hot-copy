@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { modifyNumber } from "../../../utility/numberUtils";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 let BetButton = styled.div`
@@ -32,7 +32,10 @@ let BetButton = styled.div`
 
 function Button(props) {
     const [activeBet, setActiveBet] = useState(0);
+    const [counter, setCounter] = useState(1);
+    const [isCycleActive, setIsCycleActive] = useState(false);
     const audioRef = useRef(null);
+    const buttonRef = useRef(null);
     
     const handleRoll = i => {
         setActiveBet(i);  //set active on button
@@ -43,7 +46,26 @@ function Button(props) {
             audioRef.current.play(); 
         }
     }
+    
+    const toggleCycle = () => {
+        setIsCycleActive(!isCycleActive);
+    };
 
+    useEffect(() => {
+        if (isCycleActive && counter <= 100000) {
+            const delay = 0;
+            const timer = setTimeout(() => {
+                buttonRef.current.click();  
+                setCounter(counter + 1);
+            }, delay);
+
+            console.log(+counter, "სიმულაცია");
+            
+            return () => clearTimeout(timer);
+        }
+
+    }, [counter, isCycleActive]);
+  
     return (
         <div>
             <p style={{fontSize: "12px", marginBottom: "11px"}}>
@@ -61,6 +83,7 @@ function Button(props) {
                 {props.bets.map((bet, index) => (
                     <BetButton 
                         key={index} 
+                        ref={index === 0 ? buttonRef : null}
                         className={`${index === activeBet ? "active" : ""}`} 
                         onClick={() => handleRoll(index)}
                     >
@@ -69,6 +92,10 @@ function Button(props) {
                         <p>BET</p>
                     </BetButton>
                 ))}
+                
+                <button onClick={toggleCycle}>
+                    {isCycleActive ? "Stop" : "Auto"}
+                </button>
             </div>
         </div>
     );

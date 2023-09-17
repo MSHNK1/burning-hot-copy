@@ -14,7 +14,7 @@ export const generate1to3 = () => {
         result = "other";
     }
 
-    console.log(randomNumber, result, "wildPosition");
+    // console.log(randomNumber, result, "wildPosition");
 
     return result;
 }
