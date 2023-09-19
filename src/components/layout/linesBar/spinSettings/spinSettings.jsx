@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import { useContext, useRef, useState } from 'react';
 import CurlyButton from './curlyButton/curlyButton';
 import { AudioContext } from '../../../../utility/AudioContext';
+import startSimulation from '../../../../simulation/startSimulation';
 
 const TurboSpin = styled.div`
     display: flex;
@@ -74,15 +75,19 @@ function SpinSettings() {
                 <p>Your browser does not support the audio element.</p>
             </audio>
 
-            <TurboSpin onPointerLeave={stopScaling} onPointerUp={stopScaling} onPointerDown={startScaling} className={`${isScaling && "scaling"}`}>
+            <TurboSpin 
+                onClick={() => startSimulation()} 
+                onPointerUp={stopScaling} 
+                onPointerLeave={stopScaling} 
+                onPointerDown={startScaling} 
+                className={`${isScaling && "scaling"}`}
+            >
                 <svg viewBox="0 0 500 500" style={{height: "100%"}}>
                     <circle cx="50%" cy="50%" r="247" fill="none" stroke="white" strokeWidth="4" />
                     <circle cx="50%" cy="50%" r="245" fill="black" fillOpacity={0.8} />
                     <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
                     <text width="500">
-                        <textPath xlinkHref="#curve">
-                            HOLD FOR TURBO SPIN
-                        </textPath>
+                        <textPath xlinkHref="#curve">HOLD FOR TURBO SPIN</textPath>
                     </text>
                 </svg>
 
