@@ -122,33 +122,103 @@ export const wild = "wild";
 
 
 
-export const reelSymbolsList0 = [berry, berry, berry, berry, berry, berry, seven, watermelon, watermelon, watermelon, watermelon, dollar, seven, seven, seven, star, plum, plum, plum, lemon, lemon, lemon, lemon, lemon, lemon, star, bell, berry, berry, berry, watermelon, watermelon, watermelon, dollar, plum, plum, plum, plum, plum, plum, bell, bell, bell, orange, orange, orange, star, grapes, grapes, grapes, grapes, lemon, lemon, lemon, star, bell, bell, bell, bell, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, dollar];
+// export const reelSymbolsList0 = [berry, berry, berry, berry, berry, berry, seven, watermelon, watermelon, watermelon, watermelon, dollar, seven, seven, seven, star, plum, plum, plum, lemon, lemon, lemon, lemon, lemon, lemon, star, bell, berry, berry, berry, watermelon, watermelon, watermelon, dollar, plum, plum, plum, plum, plum, plum, bell, bell, bell, orange, orange, orange, star, grapes, grapes, grapes, grapes, lemon, lemon, lemon, star, bell, bell, bell, bell, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, dollar];
+// //berry, watermelon, plum, lemon, orange, bell, grapes - 6
+// //star, dollar - 3
+// //seven - 2
+
+
+// export const reelSymbolsList1 = [lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, plum, plum, plum, plum, plum, plum, orange, orange, orange, berry, berry, berry, dollar, seven, seven, seven, lemon, lemon, lemon, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, bell, bell, watermelon, watermelon, watermelon, watermelon, watermelon, dollar, bell, bell, bell, bell, grapes, grapes, grapes, grapes, berry, berry, berry, berry, berry, berry, bell, bell, bell, watermelon, watermelon, plum, plum, plum, dollar, bell, bell, bell];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //dollar - 4
+// //seven - 4
+
+
+// export const reelSymbolsList2 = [plum, plum, plum, plum, plum, plum, orange, orange, orange, watermelon, watermelon, watermelon, watermelon, star, lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, bell, bell, bell, dollar, grapes, grapes, grapes, grapes, seven, seven, seven, lemon, lemon, lemon, watermelon, star, plum, plum, plum, watermelon, watermelon, watermelon, star, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, star, bell, bell, bell, bell, berry, berry, berry, berry, berry, berry, dollar, berry, berry, berry];
+// //berry, watermelon, plum, lemon, orange, grapes - 6
+// //bell - 5
+// //seven, star, dollar - 3
+
+
+// export const reelSymbolsList3 = [watermelon, plum, plum, plum, grapes, grapes, lemon, lemon, orange, orange, orange, dollar, bell, bell, bell, bell, watermelon, watermelon, watermelon, seven, bell, bell, bell, plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, orange, lemon, lemon, lemon, lemon, lemon, berry, berry, berry, dollar, watermelon, watermelon, lemon, lemon, lemon, dollar, berry, berry, berry, berry, berry, berry, seven, seven, grapes, grapes, grapes, dollar, bell];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //dollar - 4
+// //seven - 4
+
+
+// export const reelSymbolsList4 = [lemon, lemon, lemon, star, grapes, grapes, berry, berry, berry, berry, berry, berry, watermelon, watermelon, watermelon, seven, plum, plum, plum, plum, plum, plum, dollar, lemon, lemon, lemon, lemon, lemon, lemon, bell, bell, bell, star, orange, orange, orange, dollar, berry, berry, berry, dollar, seven, grapes, grapes, grapes, star, orange, orange, orange, orange, orange, orange, star, bell, bell, dollar, watermelon, watermelon, star, plum, plum, plum];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //star, dollar - 3
+// //seven - 2
+
+// // esec kargia 35ze
+
+
+
+
+
+// export const reelSymbolsList0 = [berry, berry, berry, berry, berry, berry, seven, watermelon, watermelon, watermelon, watermelon, dollar, seven, seven, seven, star, plum, plum, plum, plum, plum, lemon, lemon, lemon, lemon, lemon, lemon, star, bell, berry, berry, berry, berry, berry, watermelon, watermelon, watermelon, dollar, plum, plum, plum, plum, plum, plum, dollar, bell, bell, bell, star, orange, orange, orange, orange, orange, star, grapes, grapes, grapes, grapes, lemon, lemon, lemon, lemon, lemon, star, bell, bell, bell, bell, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, dollar];
+// //berry, watermelon, plum, lemon, orange, bell, grapes - 6
+// //star, dollar - 3
+// //seven - 2
+
+
+// export const reelSymbolsList1 = [lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, berry, berry, berry, berry, berry, dollar, seven, seven, seven, lemon, lemon, lemon, lemon, lemon, dollar, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, bell, bell, watermelon, watermelon, watermelon, watermelon, watermelon, dollar, bell, bell, bell, bell, grapes, grapes, grapes, grapes, berry, berry, berry, berry, berry, berry, bell, bell, bell, watermelon, watermelon, plum, plum, plum, plum, plum, dollar, bell, bell, bell];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //dollar - 4
+// //seven - 4
+
+
+// export const reelSymbolsList2 = [plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, watermelon, watermelon, watermelon, watermelon, star, lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, bell, bell, bell, dollar, grapes, grapes, grapes, grapes, seven, seven, seven, lemon, lemon, lemon, lemon, lemon, watermelon, star, plum, plum, plum, plum, plum, star, watermelon, watermelon, watermelon, star, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, star, bell, bell, bell, bell, dollar, berry, berry, berry, berry, berry, berry, dollar, berry, berry, berry, berry, berry];
+// //berry, watermelon, plum, lemon, orange, grapes - 6
+// //bell - 5
+// //seven, star, dollar - 3
+
+
+// export const reelSymbolsList3 = [watermelon, plum, plum, plum, plum, plum, grapes, grapes, lemon, lemon, orange, orange, orange, orange, orange, dollar, bell, bell, bell, bell, watermelon, watermelon, watermelon, seven, bell, bell, bell, plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, orange, lemon, lemon, lemon, lemon, lemon, berry, berry, berry, berry, berry, dollar, watermelon, watermelon, lemon, lemon, lemon, lemon, lemon, dollar, berry, berry, berry, berry, berry, berry, seven, seven, grapes, grapes, grapes, dollar, bell];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //dollar - 4
+// //seven - 4
+
+
+// export const reelSymbolsList4 = [lemon, lemon, lemon, lemon, lemon, star, grapes, grapes, berry, berry, berry, berry, berry, berry, watermelon, watermelon, watermelon, seven, plum, plum, plum, plum, plum, plum, dollar, lemon, lemon, lemon, lemon, lemon, lemon, bell, bell, bell, star, orange, orange, orange, orange, orange, dollar, berry, berry, berry, berry, berry, dollar, seven, grapes, grapes, grapes, star, orange, orange, orange, orange, orange, orange, star, bell, bell, dollar, watermelon, watermelon, plum, plum, plum, plum, plum];
+// //berry, watermelon, plum, lemon, orange, grapes, bell - 6
+// //star, dollar - 3
+// //seven - 2
+
+// // es ufro kargia 12ze
+
+
+
+
+
+export const reelSymbolsList0 = [berry, berry, berry, berry, berry, berry, seven, watermelon, watermelon, watermelon, watermelon, dollar, seven, seven, seven, star, plum, plum, plum, plum, plum, lemon, lemon, lemon, lemon, lemon, lemon, star, berry, berry, berry, berry, berry, dollar, watermelon, watermelon, watermelon, dollar, plum, plum, plum, plum, plum, plum, dollar, bell, bell, bell, bell, bell, star, orange, orange, orange, orange, orange, star, grapes, grapes, grapes, grapes, lemon, lemon, lemon, lemon, lemon, star, bell, bell, bell, bell, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, dollar];
 //berry, watermelon, plum, lemon, orange, bell, grapes - 6
 //star, dollar - 3
 //seven - 2
 
 
-export const reelSymbolsList1 = [lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, plum, plum, plum, plum, plum, plum, orange, orange, orange, berry, berry, berry, dollar, seven, seven, seven, lemon, lemon, lemon, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, bell, bell, watermelon, watermelon, watermelon, watermelon, watermelon, dollar, bell, bell, bell, bell, grapes, grapes, grapes, grapes, berry, berry, berry, berry, berry, berry, bell, bell, bell, watermelon, watermelon, plum, plum, plum, dollar, bell, bell, bell];
+export const reelSymbolsList1 = [lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, berry, berry, berry, berry, berry, dollar, seven, seven, seven, lemon, lemon, lemon, lemon, lemon, dollar, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, bell, bell, watermelon, watermelon, watermelon, watermelon, watermelon, dollar, bell, bell, bell, bell, grapes, grapes, grapes, grapes, berry, berry, berry, berry, berry, berry, bell, bell, bell, watermelon, watermelon, plum, plum, plum, plum, plum, dollar, bell, bell, bell, bell, bell];
 //berry, watermelon, plum, lemon, orange, grapes, bell - 6
 //dollar - 4
 //seven - 4
 
 
-export const reelSymbolsList2 = [plum, plum, plum, plum, plum, plum, orange, orange, orange, watermelon, watermelon, watermelon, watermelon, star, lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, bell, bell, bell, dollar, grapes, grapes, grapes, grapes, seven, seven, seven, lemon, lemon, lemon, watermelon, star, plum, plum, plum, watermelon, watermelon, watermelon, star, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, star, bell, bell, bell, bell, berry, berry, berry, berry, berry, berry, dollar, berry, berry, berry];
+export const reelSymbolsList2 = [plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, watermelon, watermelon, watermelon, watermelon, star, lemon, lemon, lemon, lemon, lemon, lemon, dollar, seven, bell, bell, bell, dollar, grapes, grapes, grapes, grapes, lemon, lemon, lemon, lemon, lemon, watermelon, star, plum, plum, plum, plum, plum, star, watermelon, watermelon, watermelon, star, orange, orange, orange, orange, orange, orange, grapes, grapes, grapes, star, bell, bell, bell, bell, dollar, berry, berry, berry, berry, berry, berry, seven, seven, seven, dollar, berry, berry, berry, berry, berry];
 //berry, watermelon, plum, lemon, orange, grapes - 6
 //bell - 5
 //seven, star, dollar - 3
 
 
-export const reelSymbolsList3 = [watermelon, plum, plum, plum, grapes, grapes, lemon, lemon, orange, orange, orange, dollar, bell, bell, bell, bell, watermelon, watermelon, watermelon, seven, bell, bell, bell, plum, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, orange, lemon, lemon, lemon, lemon, lemon, berry, berry, berry, dollar, watermelon, watermelon, lemon, lemon, lemon, dollar, berry, berry, berry, berry, berry, berry, seven, seven, grapes, grapes, grapes, dollar, bell];
+export const reelSymbolsList3 = [watermelon, plum, plum, plum, plum, plum, grapes, grapes, lemon, lemon, orange, orange, orange, orange, orange, plum, plum, dollar, bell, bell, bell, bell, watermelon, watermelon, watermelon, seven, bell, bell, bell, berry, berry, orange, orange, plum, plum, plum, plum, plum, orange, orange, orange, orange, orange, lemon, lemon, lemon, lemon, lemon, berry, berry, berry, berry, berry, dollar, watermelon, watermelon, lemon, lemon, lemon, lemon, lemon, dollar, berry, berry, berry, berry, berry, seven, seven, grapes, grapes, grapes, dollar, bell];
 //berry, watermelon, plum, lemon, orange, grapes, bell - 6
 //dollar - 4
 //seven - 4
 
 
-export const reelSymbolsList4 = [lemon, lemon, lemon, star, grapes, grapes, berry, berry, berry, berry, berry, berry, watermelon, watermelon, watermelon, seven, plum, plum, plum, plum, plum, plum, dollar, lemon, lemon, lemon, lemon, lemon, lemon, bell, bell, bell, star, orange, orange, orange, dollar, berry, berry, berry, dollar, seven, grapes, grapes, grapes, star, orange, orange, orange, orange, orange, orange, star, bell, bell, dollar, watermelon, watermelon, star, plum, plum, plum];
+export const reelSymbolsList4 = [lemon, lemon, lemon, lemon, lemon, star, grapes, grapes, berry, berry, berry, berry, berry, berry, watermelon, watermelon, watermelon, seven, plum, plum, plum, plum, plum, plum, dollar, lemon, lemon, lemon, lemon, lemon, lemon, bell, bell, bell, star, orange, orange, orange, orange, orange, dollar, berry, berry, berry, berry, berry, dollar, seven, grapes, grapes, grapes, star, orange, orange, orange, orange, orange, orange, star, bell, bell, bell, dollar, watermelon, watermelon, plum, plum, plum, plum, plum];
 //berry, watermelon, plum, lemon, orange, grapes, bell - 6
 //star, dollar - 3
 //seven - 2
 
-// esec kargia 35ze
+// es da wina ertnairi metnaklebad 12ze

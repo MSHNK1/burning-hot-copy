@@ -46,6 +46,12 @@ function Button(props) {
             audioRef.current.play(); 
         }
     }
+
+    const handleKeyDown = (i, event) => {
+        if (event.key === ' ' || event.key === 'Spacebar') {
+            handleRoll(i);
+        }
+    };
     
     const toggleCycle = () => {
         setIsCycleActive(!isCycleActive);
@@ -86,6 +92,8 @@ function Button(props) {
                         ref={index === 0 ? buttonRef : null}
                         className={`${index === activeBet ? "active" : ""}`} 
                         onClick={() => handleRoll(index)}
+                        onKeyDown={(event) => handleKeyDown(index, event)}
+                        tabIndex={0}
                     >
                         <p>EUR</p>
                         <h3>{modifyNumber(bet)}</h3>

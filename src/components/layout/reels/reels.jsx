@@ -176,9 +176,9 @@ function Reels(props) {
         let bet = props.bet;
         // console.log("payPrize:", bet, props.bet);
         let oneWinPrize = bet * symbolsWeight[symbol][number];
-        // let oneWinTimePrize = symbolsWeight[symbol][number];
+        let oneWinTimePrize = symbolsWeight[symbol][number];
         // console.log("მოგება EUR:", oneWinPrize, symbol, number);
-        console.log(`მოგება არის ${oneWinPrize}-მაგი ${number} ${symbol}-თ`);
+        console.log(`მოგება არის ${oneWinTimePrize}-მაგი / ${oneWinPrize} EUR ${number} ${symbol}-თ`);
 
         winPrizeArray.push(Number(oneWinPrize.toFixed(2)));
     }

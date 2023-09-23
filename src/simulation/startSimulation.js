@@ -74,16 +74,16 @@ export default function startSimulation() {
         reelSymbolsList4,
     ];
 
-    const developmentPurposeOnly = [
-        reelSymbolsList0,
-        reelSymbolsList1,
-        reelSymbolsList2,
-        reelSymbolsList3,
-        reelSymbolsList4,
-    ];
-    console.log(developmentPurposeOnly);
+    // const developmentPurposeOnly = [
+    //     reelSymbolsList0,
+    //     reelSymbolsList1,
+    //     reelSymbolsList2,
+    //     reelSymbolsList3,
+    //     reelSymbolsList4,
+    // ];
+    // console.log(developmentPurposeOnly);
 
-    console.log(reelSymbolsList0.length, reelSymbolsList1.length, reelSymbolsList2.length, reelSymbolsList3.length, reelSymbolsList4.length);
+    // console.log(reelSymbolsList0.length, reelSymbolsList1.length, reelSymbolsList2.length, reelSymbolsList3.length, reelSymbolsList4.length);
 
     function oneSimulation(i) {
         const payLine = [
@@ -241,10 +241,11 @@ export default function startSimulation() {
                 }
 
                 let mean = simulationWin / resultsN;
-
+                let sumOfResults = 0;
                 for (let i = 0; i < resultsN; i++) {   
                     squaredDifferencesSum += (simulationResults[i] - mean) ** 2;
                     // console.log(mean, squaredDifferencesSum);
+                    sumOfResults += simulationResults[i];    
                 }
                 
                 let hitFrequency = (simulationN - numberOfZeroWinning) * 100 / simulationN;
@@ -274,8 +275,8 @@ export default function startSimulation() {
                     symbolsRTPResults[symbol] = +sum.toFixed(2);
                 }
 
-                console.log(mean);
-                console.log(simulationResults);
+                console.log(mean, sumOfResults);
+                // console.log(simulationResults);
                 
                 console.group("Results");
                     console.log("Final balance:", simulationWin);
@@ -285,9 +286,9 @@ export default function startSimulation() {
                     console.log(+simulationN, "Simulations in", Date.now() - start, "ms");
                 console.groupEnd();
                 
-                console.log(separateSymbolsResults);
-                console.log(separateSymbolsRTPResults);
-                console.log(symbolsRTPResults);
+                // console.log(separateSymbolsResults);
+                // console.log(separateSymbolsRTPResults);
+                // console.log(symbolsRTPResults);
 
                 console.dir({
                     "Number of simulations:": simulationN,

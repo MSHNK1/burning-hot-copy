@@ -3,7 +3,7 @@ export const generateExtraReel = () => {
     
     let result;
 
-    if (randomNumber < 35) {
+    if (randomNumber < 12) {
         result = true;
     } else if (randomNumber <= 100) {
         result = false;

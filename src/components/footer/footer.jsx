@@ -35,7 +35,7 @@ const Amount = styled.div`
 // export const Footer = (props) => {
 function Footer(props) {
     const { isMuted, toggleMute } = useContext(AudioContext);
-    const [balance, setBalance] = useState(500);
+    const [balance, setBalance] = useState(9999);
     const [roll, setRoll] = useState(false);
     const audioRef = useRef(null);
     const [counting, setCounting] = useState(false);
