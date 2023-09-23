@@ -7,7 +7,7 @@ export const generate1to3 = () => {
         result = 1;
     } else if (randomNumber < 200) {
         result = 2;
-    } else if (randomNumber < 300) {
+    } else if (randomNumber <= 300) {
         result = 3;
     } else {
         alert("Error in generate1to3()");

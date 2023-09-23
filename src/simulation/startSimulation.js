@@ -1,30 +1,19 @@
 import { generate1to3 } from "../utility/generate1to3";
+import { generateExtraReel } from "../utility/generateExtraReel";
 import { generateWild } from "../utility/generateWild";
-import { dollar, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, seven, star, wild } from "../utility/reelSymbolsList";
+import { bell, berry, dollar, grapes, lemon, orange, plum, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, seven, star, watermelon, wild } from "../utility/reelSymbolsList";
 import { symbolsWeight } from "../utility/symbolsWeight";
 
 export default function startSimulation() {
     let simulationResults = [];
     let simulationN = 10**7;
+    let firstReel = [];
+    let nonScatters = [berry, bell, watermelon, orange, seven, lemon, plum, grapes];
+
     const separateSymbolsResults = {
         seven: {
             2: 0, 
             3: 0, 
-            4: 0,
-            5: 0
-        },
-        grapes: {
-            3: 0,
-            4: 0,
-            5: 0
-        },
-        watermelon: {
-            3: 0,
-            4: 0,
-            5: 0
-        },
-        bell: {
-            3: 0,
             4: 0,
             5: 0
         },
@@ -48,6 +37,21 @@ export default function startSimulation() {
             4: 0,
             5: 0
         },
+        bell: {
+            3: 0,
+            4: 0,
+            5: 0
+        },
+        grapes: {
+            3: 0,
+            4: 0,
+            5: 0
+        },
+        watermelon: {
+            3: 0,
+            4: 0,
+            5: 0
+        },
         dollar: {
             3: 0,
             4: 0,
@@ -57,7 +61,8 @@ export default function startSimulation() {
             3: 0,
         }
     };
-
+    
+    const symbolsRTPResults = {};
     const separateSymbolsRTPResults = {};
     const start = Date.now();
 
@@ -68,6 +73,17 @@ export default function startSimulation() {
         reelSymbolsList3,
         reelSymbolsList4,
     ];
+
+    const developmentPurposeOnly = [
+        reelSymbolsList0,
+        reelSymbolsList1,
+        reelSymbolsList2,
+        reelSymbolsList3,
+        reelSymbolsList4,
+    ];
+    console.log(developmentPurposeOnly);
+
+    console.log(reelSymbolsList0.length, reelSymbolsList1.length, reelSymbolsList2.length, reelSymbolsList3.length, reelSymbolsList4.length);
 
     function oneSimulation(i) {
         const payLine = [
@@ -246,6 +262,19 @@ export default function startSimulation() {
                         separateSymbolsRTPResults[symbol][number] = +(resultObj[number] * weightObj[number] * 100 / simulationN).toFixed(2);
                     }
                 }
+
+                for (const symbol in separateSymbolsRTPResults) {
+                    const symbolData = separateSymbolsRTPResults[symbol];
+                    let sum = 0;
+                    
+                    for (const key in symbolData) {
+                        sum += symbolData[key];
+                    }
+
+                    symbolsRTPResults[symbol] = +sum.toFixed(2);
+                }
+
+                console.log(mean);
                 console.log(simulationResults);
                 
                 console.group("Results");
@@ -258,6 +287,7 @@ export default function startSimulation() {
                 
                 console.log(separateSymbolsResults);
                 console.log(separateSymbolsRTPResults);
+                console.log(symbolsRTPResults);
 
                 console.dir({
                     "Number of simulations:": simulationN,
@@ -318,8 +348,27 @@ export default function startSimulation() {
                     break;
             }
             
-            reel.reel = [reelsData[reelIndex][topSymb], reelsData[reelIndex][midSymb], reelsData[reelIndex][botSymb]];
-            // console.log(reel.reel);
+            // console.log(wildReel);
+            let extraReel = false;
+            if (reelIndex === 1 && wildReel.length === 0) {
+                extraReel = generateExtraReel();
+            }
+            // console.log(extraReel);
+            if (extraReel) {
+                // const firstReel = [symbolsListArray[0][reel]];
+                // console.log(firstReel);
+                let secondReel = nonScatters.filter(item => !firstReel.includes(item));
+                let randomSymbol = randomNumber(0, secondReel.length); 
+                // console.log(secondReel, randomSymbol, secondReel[randomSymbol]);
+
+                reel.reel = [secondReel[randomSymbol], secondReel[randomSymbol], secondReel[randomSymbol]];
+            } else {
+                reel.reel = [reelsData[reelIndex][topSymb], reelsData[reelIndex][midSymb], reelsData[reelIndex][botSymb]];
+            }
+
+            if (reelIndex === 0) {
+                firstReel = reel.reel;
+            }
 
             //insert wild(s)
             const hasStar = reel.reel.includes(star);
@@ -343,6 +392,7 @@ export default function startSimulation() {
             
             addToPayline(reelIndex);
         }
+
         let isRolling = true;
 
         if (isRolling) {

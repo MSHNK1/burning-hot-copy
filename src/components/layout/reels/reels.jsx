@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import Reel from "./reel/reel";
-import { dollar, wild, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, star } from "../../../utility/reelSymbolsList";
+import { dollar, wild, reelSymbolsList0, reelSymbolsList1, reelSymbolsList2, reelSymbolsList3, reelSymbolsList4, star, plum, berry, bell, watermelon, orange, lemon, grapes } from "../../../utility/reelSymbolsList";
 import { connect } from "react-redux";
 import * as actions from '../../../store/actions/index';
 import PropTypes from "prop-types";
@@ -9,6 +9,7 @@ import { seven } from '../../../utility/reelSymbolsList';
 import { symbolsWeight } from "../../../utility/symbolsWeight";
 import { generate1to3 } from "../../../utility/generate1to3";
 import { generateWild } from "../../../utility/generateWild";
+import { generateExtraReel } from "../../../utility/generateExtraReel";
 
 const ReelsContainer = styled.div`
     width: calc(100% - 2 * 50px);
@@ -27,6 +28,8 @@ function Reels(props) {
         reelSymbolsList3,
         reelSymbolsList4,
     ];
+    let firstReel = [];
+    let nonScatters = [berry, bell, watermelon, orange, seven, lemon, plum, grapes];
 
     const payLine = [
         {id: 0, payLine0: []},  //000 - top
@@ -125,8 +128,8 @@ function Reels(props) {
                 const indexToChange = updatedArray.findIndex(item => item.id === i);
             
                 updatedArray[indexToChange] = {
-                ...updatedArray[indexToChange],
-                reel: [wild, wild, wild],
+                    ...updatedArray[indexToChange],
+                    reel: [wild, wild, wild],
                 };
             
                 return updatedArray;
@@ -208,7 +211,27 @@ function Reels(props) {
                 break;
         }
 
-        reel.reel = [reelsData[reelIndex][topSymb], reelsData[reelIndex][midSymb], reelsData[reelIndex][botSymb]];
+        // console.log(wildReel);
+        let extraReel = false;
+        if (reelIndex === 1 && wildReel.length === 0) {
+            extraReel = generateExtraReel();
+        }
+        // console.log(extraReel);
+        if (extraReel) {
+            // const firstReel = [symbolsListArray[0][reel]];
+            // console.log(firstReel);
+            let secondReel = nonScatters.filter(item => !firstReel.includes(item));
+            let randomSymbol = randomNumber(0, secondReel.length); 
+            // console.log(secondReel, randomSymbol, secondReel.length, secondReel[randomSymbol]);
+
+            reel.reel = [secondReel[randomSymbol], secondReel[randomSymbol], secondReel[randomSymbol]];
+        } else {
+            reel.reel = [reelsData[reelIndex][topSymb], reelsData[reelIndex][midSymb], reelsData[reelIndex][botSymb]];
+        }
+
+        if (reelIndex === 0) {
+            firstReel = reel.reel;
+        }
 
         //insert wild(s)
         const hasStar = reel.reel.includes(star);
