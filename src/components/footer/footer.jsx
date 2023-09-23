@@ -116,7 +116,7 @@ function Footer(props) {
             </Fa>
 
             <audio ref={audioRef}>
-                <source src="/src/assets/audio/speaker.wav" type="audio/wav" />
+                <source src="/assets/audio/speaker.wav" type="audio/wav" />
                 <p>Your browser does not support the audio element.</p>
             </audio>
             <Fa onClick={toggleSpeaker}>

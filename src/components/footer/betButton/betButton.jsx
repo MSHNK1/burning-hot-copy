@@ -81,7 +81,7 @@ function Button(props) {
             </p>
 
             <audio ref={audioRef}>
-                <source src="/src/assets/audio/betButton.mp3" type="audio/mpeg" />
+                <source src="/assets/audio/betButton.mp3" type="audio/mpeg" />
                 <p>Your browser does not support the audio element.</p>
             </audio>
 

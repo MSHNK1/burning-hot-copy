@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 import PropTypes from "prop-types";
 import './curlyButton.css';
-import arrow from '../../../../../assets/images/one-arrow.svg';
-import play from '../../../../../assets/images/play.svg';
-import settings from '../../../../../assets/images/settings.svg';
+import arrow from '/assets/images/one-arrow.svg';
+import play from '/assets/images/play.svg';
+import settings from '/assets/images/settings.svg';
 
 const Settings = styled.div`
     position: absolute;

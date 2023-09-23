@@ -1,6 +1,6 @@
 import './spinSettings.css';
-import arrow1 from "../../../../assets/images/arrow-1.svg";
-import arrow2 from "../../../../assets/images/arrow-2.svg";
+import arrow1 from "/assets/images/arrow-1.svg";
+import arrow2 from "/assets/images/arrow-2.svg";
 import { styled } from 'styled-components';
 import { useContext, useRef, useState } from 'react';
 import CurlyButton from './curlyButton/curlyButton';
@@ -67,11 +67,11 @@ function SpinSettings() {
     return (
         <>
             <audio ref={audioRef1}>
-                <source src="/src/assets/audio/balloon.mp3" type="audio/mpeg" />
+                <source src="/assets/audio/balloon.mp3" type="audio/mpeg" />
                 <p>Your browser does not support the audio element.</p>
             </audio>
             <audio ref={audioRef2}>
-                <source src="/src/assets/audio/balloon-blows-up.wav" type="audio/wav" />
+                <source src="/assets/audio/balloon-blows-up.wav" type="audio/wav" />
                 <p>Your browser does not support the audio element.</p>
             </audio>
 
